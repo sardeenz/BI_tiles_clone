@@ -61,9 +61,9 @@ angular.module('businessTiles', [])
 .controller('businessCtrl', ['$scope', function($scope){
     $scope.tiles = [
 
-    {factory:"transloc", cardTitle:"Buses In Service", subtitle:"in service", valueField:"count", method:"getVehicleCount", frequency:"5000", labelField: "call_name"},
-    {factory:"transloc", cardTitle:"Average Bus Speed (mph)", subtitle:"average speed", valueField:"speed", method:"getVehicleCount", frequency:"5000", labelField: "speed"},
-    {factory:"cityworks", cardTitle:"Open See Click Fixes", subtitle:"Open in See Click Fix", valueField:"COUNT", method:"getCount", table:"azteca.request", fields:"SRX, SRY, DESCRIPTION", parameters:"initiatedby = 'FIX, SEE CLICK' and not (status in ('CANCEL','CANCEL NOT FOUND', 'CANCEL OTHER', 'CLOSED'))", frequency:"10000", labelField: "DESCRIPTION"},    
+    // {factory:"transloc", cardTitle:"Buses In Service", subtitle:"in service", valueField:"count", method:"getVehicleCount", frequency:"5000", labelField: "call_name"},
+    // {factory:"transloc", cardTitle:"Average Bus Speed (mph)", subtitle:"average speed", valueField:"speed", method:"getVehicleCount", frequency:"5000", labelField: "speed"},
+     {factory:"cityworks", cardTitle:"Open See Click Fixes", subtitle:"Open in See Click Fix", valueField:"COUNT", method:"getCount", table:"azteca.request", fields:"SRX, SRY, DESCRIPTION", parameters:"initiatedby = 'FIX, SEE CLICK' and not (status in ('CANCEL','CANCEL NOT FOUND', 'CANCEL OTHER', 'CLOSED'))", frequency:"10000", labelField: "DESCRIPTION"},    
     {factory:"iris", cardTitle:"Permits Issued Today", subtitle:"Permits Issued Today", valueField:"COUNT", method:"getIrisCount", table:"iris.permits_all_view", fields:"NCPIN,GRP_PROPOSED_WORK", parameters:"grp_issue_date>= trunc(sysdate)", frequency:"10000", labelField: "GRP_PROPOSED_WORK"},    
     ];
 }])
