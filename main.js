@@ -77,9 +77,9 @@ angular.module('businessTiles', [])
         var d = $q.defer();
         $http.jsonp(sinaUrl, {
             params: {
-               // table: table,
-                //fields: fields,
-                //parameters: params,
+                table: table,
+                fields: fields,
+                parameters: params,
                 callback: 'JSON_CALLBACK'
             }
         }).success(function (data) {
