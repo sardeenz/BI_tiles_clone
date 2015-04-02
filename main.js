@@ -78,7 +78,7 @@ angular.module('businessTiles', [])
         $http.jsonp(sinaUrl, {
             params: {
             
-                callback: 'JSON_CALLBACK'
+                // callback: 'JSON_CALLBACK'
             }
         }).success(function (data) {
            
