@@ -86,31 +86,38 @@ angular.module('businessTiles', [])
 // }])
 
 .factory('sina', ['$http', '$q', function($http, $q){
-    var sinaUrl = 'http://rhsoatstapp1:9595/see_click_fix';
+    var baseUrl = 'http://rhsoatstapp1:9595/see_click_fix';
+    //var headers = {'X-Mashape-Key': 'QcvihLtHdgmshtY0Yjsg7nytW4Iqp1MEy05jsnSqvl1Lqjt9eW'};
     var service = {};
-    service.getSinaCount = function (params) {
+    service.getSinaCount = function () {
         var d = $q.defer();
-        $http.jsonp(sinaUrl, {
+        $http({
+            url: baseUrl,
             params: {
-                // table: table,
-                // fields: fields,
-                // parameters: params,
-                // callback: 'JSON_CALLBACK'
-            }
+                
+            },
+            headers: headers
         }).success(function (data) {
+            var speed = 0;
             var gj = {
               type: "FeatureCollection",
               features: [
 
               ]
-            };            
-         
+            };
+
+            angular.forEach(data.data[20], function (v) {
+                speed += v.speed;
+                gj.features.push({type: 'Feature', geometry: {type: 'Point', coordinates:[v.location.lng, v.location.lat]}, properties: {call_name: v.call_name, speed: Math.round(v.speed).toString()}});
+            });
+            d.resolve({count: data.data[20].length, speed: Math.round(speed/data.data[20].length), geojson: gj});
         });
         return d.promise;
     }
-    
     return service;
-}])
+}]);
+
+
 .factory('cityworks', ['$http', '$q', function($http, $q){
     var irisUrl = 'http://gisdevarc1/dirt-simple-cwreporting/v1/ws_geo_attributequery.php';
     var service = {};
