@@ -133,23 +133,24 @@ angular.module('businessTiles', [])
            } 
     return service;
 }])
-.factory('cityworks', ['$http', '$q', function($http, $q){
-    var irisUrl = 'http://gisdevarc1/dirt-simple-cwreporting/v1/ws_geo_attributequery.php';
-    var service = {};
-    service.getCount = function (table, fields, params) {
-        var d = $q.defer();
-        $http.jsonp(irisUrl, {
-            params: {
-                table: table,
-                fields: fields,
-                parameters: params,
-                callback: 'JSON_CALLBACK'
-            }
-        }).success(function (data) {
-            var gj = {
-              type: "FeatureCollection",
-              features: [
+// .factory('cityworks', ['$http', '$q', function($http, $q){
+//     var irisUrl = 'http://gisdevarc1/dirt-simple-cwreporting/v1/ws_geo_attributequery.php';
+//     var service = {};
+//     service.getCount = function (table, fields, params) {
+//         var d = $q.defer();
+//         $http.jsonp(irisUrl, {
+//             params: {
+//                 table: table,
+//                 fields: fields,
+//                 parameters: params,
+//                 callback: 'JSON_CALLBACK'
+//             }
+//         }).success(function (data) {
+//             var gj = {
+//               type: "FeatureCollection",
+//               features: [
 
+<<<<<<< Updated upstream
               ]
             };
                                  angular.forEach(data, function (d) {
@@ -163,6 +164,21 @@ angular.module('businessTiles', [])
     }
     return service;
 }])
+=======
+//               ]
+//             };
+//                                  angular.forEach(data, function (d) {
+//                     var ll = spToDD(d.SRX, d.SRY);
+//                     ll = [ll[1], ll[0]];
+//                     gj.features.push({type: 'Feature', geometry: {type: 'Point', coordinates:ll}, properties: d});
+//                 });
+//             d.resolve({COUNT: data.length, geojson: gj});
+//         });
+//         return d.promise;
+//     }
+//     return service;
+// }])
+>>>>>>> Stashed changes
 // .factory('transloc', ['$http', '$q', function($http, $q){
 //     var baseUrl = 'https://transloc-api-1-2.p.mashape.com/';
 //     var headers = {'X-Mashape-Key': 'QcvihLtHdgmshtY0Yjsg7nytW4Iqp1MEy05jsnSqvl1Lqjt9eW'};
