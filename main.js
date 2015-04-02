@@ -70,31 +70,32 @@ angular.module('businessTiles', [])
     ];
 }])
 
+
+// .factory('sina', ['$http', '$q', function($http, $q){
+//     var sinaUrl = 'http://rhsoatstapp1:9595/see_click_fix';
+//     var service = {};
+//     service.getSinaCount = function() {
+//         var d = $q.defer();
+//         $http.json(sinaUrl).success(function (data) {
+           
+//             d.resolve(data);
+//         });
+//         return d.promise;
+//     }
+//     return service;
+// }])
+
 .factory('sina', ['$http', '$q', function($http, $q){
     var sinaUrl = 'http://rhsoatstapp1:9595/see_click_fix';
     var service = {};
-    service.getSinaCount = function() {
+    service.getSinaCount = function (params) {
         var d = $q.defer();
-        $http.json(sinaUrl).success(function (data) {
-           
-            d.resolve(data);
-        });
-        return d.promise;
-    }
-    return service;
-}])
-
-.factory('iris', ['$http', '$q', function($http, $q){
-    var irisUrl = 'http://gisdevarc1/dirt-simple-iris/v1/ws_geo_attributequery.php';
-    var service = {};
-    service.getIrisCount = function (table, fields, params) {
-        var d = $q.defer();
-        $http.jsonp(irisUrl, {
+        $http.jsonp(sinaUrl, {
             params: {
-                table: table,
-                fields: fields,
-                parameters: params,
-                callback: 'JSON_CALLBACK'
+                // table: table,
+                // fields: fields,
+                // parameters: params,
+                // callback: 'JSON_CALLBACK'
             }
         }).success(function (data) {
             var gj = {
@@ -103,20 +104,11 @@ angular.module('businessTiles', [])
 
               ]
             };            
-            angular.forEach(data, function (d) {
-                var ll = getLatLngFromPIN(d.NCPIN);
-                gj.features.push({type: 'Feature', geometry: {type: 'Point', coordinates:ll}, properties: d});
-            });
-            d.resolve({COUNT: data.length, geojson: gj});
+         
         });
         return d.promise;
     }
-    function getLatLngFromPIN (pin) {
-                var x = '2' + pin[0].toString() +pin[2].toString() + pin[4].toString() + pin[6].toString() + pin[8].toString() + '0';
-                var y =  pin[1].toString() +pin[3].toString() + pin[5].toString() + pin[7].toString() + pin[9].toString() + '0';  
-                var ll = spToDD(x, y);
-                return [ll[1], ll[0]]                
-           } 
+    
     return service;
 }])
 .factory('cityworks', ['$http', '$q', function($http, $q){
