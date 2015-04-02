@@ -65,7 +65,7 @@ angular.module('businessTiles', [])
     // {factory:"transloc", cardTitle:"Average Bus Speed (mph)", subtitle:"average speed", valueField:"speed", method:"getVehicleCount", frequency:"5000", labelField: "speed"},
      {factory:"cityworks", cardTitle:"Open See Click Fixes", subtitle:"Open in See Click Fix", valueField:"COUNT", method:"getCount", table:"azteca.request", fields:"SRX, SRY, DESCRIPTION", parameters:"initiatedby = 'FIX, SEE CLICK' and not (status in ('CANCEL','CANCEL NOT FOUND', 'CANCEL OTHER', 'CLOSED'))", frequency:"10000", labelField: "DESCRIPTION"},    
     {factory:"iris", cardTitle:"Permits Issued Today", subtitle:"Permits Issued Today", valueField:"COUNT", method:"getIrisCount", table:"iris.permits_all_view", fields:"NCPIN,GRP_PROPOSED_WORK", parameters:"grp_issue_date>= trunc(sysdate)", frequency:"10000", labelField: "GRP_PROPOSED_WORK"},    
-    {factory:"sina", cardTitle:"SeeCF Closed ", subtitle:"SCF ClosedToday", valueField:"COUNT", method:"getSinaCount"},    
+    {factory:"sina", cardTitle:"SeeCF Closed ", subtitle:"SCF ClosedToday", valueField:"open", method:"getSinaCount"},    
         
     ];
 }])
@@ -81,18 +81,8 @@ angular.module('businessTiles', [])
                 callback: 'JSON_CALLBACK'
             }
         }).success(function (data) {
-            var gj = {
-              type: "FeatureCollection",
-              features: [
-
-              ]
-            };
-                                 angular.forEach(data, function (d) {
-                    var ll = spToDD(d.SRX, d.SRY);
-                    ll = [ll[1], ll[0]];
-                    gj.features.push({type: 'Feature', geometry: {type: 'Point', coordinates:ll}, properties: d});
-                });
-            d.resolve({COUNT: data.length, geojson: gj});
+           
+            d.resolve( data);
         });
         return d.promise;
     }
