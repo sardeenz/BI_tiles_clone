@@ -73,11 +73,9 @@ angular.module('businessTiles', [])
 .factory('sina', ['$http', '$q', function($http, $q){
     var sinaUrl = 'http://rhsoatstapp1:9595/see_click_fix';
     var service = {};
-    service.getSinaCount = function (params) {
+    service.getSinaCount = function() {
         var d = $q.defer();
-        $http.json(sinaUrl, {
-
-        }).success(function (data) {
+        $http.json(sinaUrl).success(function (data) {
            
             d.resolve(data);
         });
