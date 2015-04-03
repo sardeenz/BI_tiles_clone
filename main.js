@@ -76,7 +76,7 @@ angular.module('businessTiles', [])
     var service = {};
     service.getSinaCount = function () {
         var d = $q.defer();
-        $http.json(sinaUrl).success(function (data) {
+        $http(sinaUrl).success(function (data) {
            
             d.resolve(data);
         });
