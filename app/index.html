@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Prototype</title>
+      <link href='http://fonts.googleapis.com/css?family=Raleway:400,700,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <link rel="stylesheet" type="text/css" href="css/leaflet-label.css">    
+
+
+    </head>
+<body>  
+<h1>Today at the City of Raleigh</h1>  
+<div ng-app="businessTiles" ng-controller="businessCtrl" class="flip" >
+    <flip-tile class="card" ng-class="{'flipped':isFlipped}" ng-click="isFlipped=!isFlipped" ng-repeat="tile in tiles" ng-model="tile" card-title="tile.cardTitle" subtitle="tile.subtitle" value-field="tile.valueField" factory="tile.factory" method="tile.method" table="tile.table" fields="tile.fields" parameters="tile.parameters" frequency="tile.frequency" label-field="tile.labelField"></flip-tile>
+</div>
+</body>
+
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+    <script src="bower_components/leaflet/dist/leaflet.js"></script>
+    <script type="text/javascript" src="js/sptodd.js"></script>
+    <script src="js/leaflet-label.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+
+</html>
