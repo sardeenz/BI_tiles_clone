@@ -72,7 +72,7 @@ angular.module('businessTiles', [])
 
 
 .factory('sina', ['$http', '$q', function($http, $q){
-    var sinaUrl = 'http://rhsoatstapp1:9595/see_click_fix';
+    var sinaUrl = 'http://rhsoatstapp1:9595/see_click_fix.json';
     var service = {};
     service.getSinaCount = function () {
         var d = $q.defer();
