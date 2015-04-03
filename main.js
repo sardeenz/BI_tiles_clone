@@ -83,7 +83,7 @@ angular.module('businessTiles', [])
         return d.promise;
     }
     return service;
-}]);
+}])
 
 // .factory('sina', ['$http', '$q', function($http, $q){
 //     var baseUrl = 'http://rhsoatstapp1:9595/see_click_fix';
